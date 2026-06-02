@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF0F0F0F),
         appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0F0F0F)),
       ),
-      home: const Profilescreen(),
+      home: Profilescreen(),
     );
   }
 }

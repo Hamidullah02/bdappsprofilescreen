@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../datajson.dart';
+import '../widgets/profile.videoCard.dart';
+
 class Profilescreen extends StatelessWidget {
   const Profilescreen({super.key});
 
@@ -25,7 +28,10 @@ class Profilescreen extends StatelessWidget {
               ),
               child: const Row(
                 children: [
-                  Text("Account", style: TextStyle(fontSize: 14, color: Colors.white)),
+                  Text(
+                    "Account",
+                    style: TextStyle(fontSize: 14, color: Colors.white),
+                  ),
                   SizedBox(width: 4),
                   Icon(Icons.keyboard_arrow_down_outlined, size: 18),
                 ],
@@ -61,7 +67,10 @@ class Profilescreen extends StatelessWidget {
                     const CircleAvatar(
                       radius: 32,
                       backgroundColor: Color(0xFF7564A8),
-                      child: Text("H", style: TextStyle(fontSize: 32, color: Colors.white)),
+                      child: Text(
+                        "H",
+                        style: TextStyle(fontSize: 32, color: Colors.white),
+                      ),
                     ),
                     const SizedBox(width: 16),
                     Column(
@@ -70,15 +79,23 @@ class Profilescreen extends StatelessWidget {
                       children: [
                         const Text(
                           "Hamid Ullah",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           "@hamid_ullah • create channel",
-                          style: TextStyle(fontSize: 12, color: Colors.grey[400], fontWeight: FontWeight.w300),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey[400],
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -91,24 +108,15 @@ class Profilescreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              Container(
-                child:SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        margin: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width:screenSize.width *.4,
-                          alignment: Alignment.center,
-                          child: Text('Item $index'),
-                        ),
-                      );
-                    },
-                  ),
-                )
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: videoList.length,
+                  itemBuilder: (context, index) {
+                    return VideoCardWidget(video: videoList[index]);
+                  },
+                ),
               ),
               const SizedBox(height: 24),
               const Text(
@@ -119,17 +127,15 @@ class Profilescreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              Container(
-                  child:SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return  VideoCardWidget(label: 'Item $index');
-                      },
-                    ),
-                  )
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: videoList.length,
+                  itemBuilder: (context, index) {
+                    return VideoCardWidget(video: videoList[index]);
+                  },
+                ),
               ),
               const SizedBox(height: 24),
               const Text(
@@ -176,42 +182,9 @@ class Profilescreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-
-
-class VideoCardWidget extends StatelessWidget {
-  final String label;
-
-  const VideoCardWidget({
-    super.key,
-    required this.label,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery
-        .of(context)
-        .size;
-
-    return Container(
-      width: screenSize.width * 0.4,
-      margin: const EdgeInsets.only(right: 12.0),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1B1B1B),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white, fontSize: 14),
       ),
     );
   }
